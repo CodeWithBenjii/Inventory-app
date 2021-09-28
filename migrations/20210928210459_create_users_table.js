@@ -30,7 +30,12 @@ exports.up = async (knex) => {
       table.integer('width');
       table.integer('height');
       table.integer('length');
-      table.integer('shape_id').references('id').inTable(tableName.shape);
+      table
+        .integer('shape_id')
+        .references('id')
+        .inTable(tableName.shape)
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE');
       table.integer('volume');
     }),
     knex.schema.createTable(tableName.item_type, (table) => {
@@ -52,8 +57,18 @@ exports.up = async (knex) => {
       table.string('address_line_1').notNullable();
       table.string('address_line_2');
       table.string('city').notNullable();
-      table.integer('state_id').references('id').inTable(tableName.state);
-      table.integer('country_id').references('id').inTable(tableName.country);
+      table
+        .integer('state_id')
+        .references('id')
+        .inTable(tableName.state)
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE');
+      table
+        .integer('country_id')
+        .references('id')
+        .inTable(tableName.country)
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE');
       table.string('zip_code').notNullable();
       table.string('longitude');
       table.string('latitude');
@@ -67,24 +82,113 @@ exports.up = async (knex) => {
       table.string('website_url');
       table.string('phone_number');
       table.string('email');
-      table.integer('address_id').references('id').inTable(tableName.address);
+      table
+        .integer('address_id')
+        .references('id')
+        .inTable(tableName.address)
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE');
     }),
     knex.schema.createTable(tableName.item, (table) => {
       table.increments('id').primary();
-      table.integer('user_id').references('id').inTable(tableName.user);
+      table
+        .integer('user_id')
+        .references('id')
+        .inTable(tableName.user)
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE');
       table.string('name').notNullable();
       table.string('description');
-      table.integer('item_type_id').references('id').inTable(tableName.item_type);
-      table.integer('company_id').references('id').inTable(tableName.company);
-      table.integer('size_id').references('id').inTable(tableName.size);
+      table
+        .integer('item_type_id')
+        .references('id')
+        .inTable(tableName.item_type)
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE');
+      table
+        .integer('company_id')
+        .references('id')
+        .inTable(tableName.company)
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE');
+      table
+        .integer('size_id')
+        .references('id')
+        .inTable(tableName.size)
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE');
       table.string('sku').notNullable();
       table.boolean('sparks_joy');
+    }),
+    knex.schema.createTable(tableName.item_image, (table) => {
+      table.increments('id').primary();
+      table
+        .integer('item_id')
+        .references('id')
+        .inTable(tableName.item)
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE');
+      table.string('image_url');
+    }),
+    knex.schema.createTable(tableName.related_item, (table) => {
+      table.increments('id').primary();
+      table
+        .integer('item_id')
+        .references('id')
+        .inTable(tableName.item)
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE');
+      table
+        .integer('related_item_id')
+        .references('id')
+        .inTable(tableName.item)
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE');
+    }),
+    knex.schema.createTable(tableName.item_info, (table) => {
+      table.increments('id').primary();
+      table
+        .integer('user_id')
+        .references('id')
+        .inTable(tableName.user)
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE');
+      table
+        .integer('item_id')
+        .references('id')
+        .inTable(tableName.item)
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE');
+      table.dateTime('created_at').notNullable();
+      table.dateTime('updated_at').notNullable();
+      table.dateTime('deleted_at');
+      table.dateTime('purchase_date');
+      table.dateTime('expiration_date');
+      table
+        .integer('retailer_id')
+        .references('id')
+        .inTable(tableName.company)
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE');
+      table.dateTime('last_used');
+      table.integer('purchase_price');
+      table.integer('msrp');
+      table
+        .integer('inventory_location_id')
+        .references('id')
+        .inTable(tableName.inventory_location)
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE');
     }),
   ]);
 };
 
 exports.down = async (knex) => {
   await Promise.all([
+    knex.schema.dropTableIfExists(tableName.related_item),
+    knex.schema.dropTableIfExists(tableName.item_info),
+    knex.schema.dropTableIfExists(tableName.item_image),
+    knex.schema.dropTableIfExists(tableName.item),
     knex.schema.dropTableIfExists(tableName.user),
     knex.schema.dropTableIfExists(tableName.size),
     knex.schema.dropTableIfExists(tableName.shape),
@@ -94,6 +198,5 @@ exports.down = async (knex) => {
     knex.schema.dropTableIfExists(tableName.address),
     knex.schema.dropTableIfExists(tableName.country),
     knex.schema.dropTableIfExists(tableName.state),
-    knex.schema.dropTableIfExists(tableName.item),
   ]);
 };

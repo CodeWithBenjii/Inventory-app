@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "node ./src/index.js",
-    "test": "jest --watch",
-    "test:ci": "jest --ci"
+    "test": "jest --watchAll --coverage",
+    "test:ci": "jest --ci",
+    "updateDb": "knex migrate:latest",
+    "rollback": "knex migrate:rollback"
   },
   "keywords": [],
   "author": "",
@@ -17,7 +19,10 @@
     "joi": "^17.4.2",
     "knex": "^0.95.11",
     "morgan": "^1.10.0",
-    "pg": "^8.7.1"
+    "objection": "^2.2.16",
+    "pg": "^8.7.1",
+    "swagger-jsdoc": "5.0.1",
+    "swagger-ui-express": "^4.1.6"
   },
   "devDependencies": {
     "eslint": "^7.2.0",

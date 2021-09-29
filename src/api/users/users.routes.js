@@ -2,16 +2,16 @@ const express = require('express');
 const Joi = require('joi');
 
 const router = express.Router();
+const User = require('./user.model');
 
-/**
- * @swagger
- * /users:
- *   get:
- *     summary: Retrieve a list of JSONPlaceholder users
- *     description: Retrieve a list of users from JSONPlaceholder. Can be used to populate a list of fake users when prototyping or testing an API.
- */
-// eslint-disable-next-line consistent-return
-router.post('/users', async (req, res) => {
+router.get('/', async (req, res) => {
+  const users = await User.query()
+    .select('id', 'email', 'name', 'created_at', 'updated_at')
+    .where('deleted_at', null);
+  res.json(users);
+});
+
+router.post('/', async (req, res) => {
   const schema = Joi.object({
     username: Joi.string().min(3).required(),
     email: Joi.string().min(6).required().email(),

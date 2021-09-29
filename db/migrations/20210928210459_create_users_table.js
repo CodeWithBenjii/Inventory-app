@@ -1,4 +1,4 @@
-const tableName = require('../src/constants/tableNames');
+const tableName = require('../../src/utils/constants/tableNames');
 
 /**
  * @param {import('knex')} knex
@@ -9,6 +9,7 @@ exports.up = async (knex) => {
       table.increments('id').primary();
       table.string('email').unique().notNullable();
       table.string('password').notNullable();
+      table.string('name').notNullable();
       table.dateTime('last_login');
       table.dateTime('created_at').notNullable();
       table.dateTime('updated_at').notNullable();

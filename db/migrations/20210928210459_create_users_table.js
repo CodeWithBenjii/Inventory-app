@@ -11,8 +11,8 @@ exports.up = async (knex) => {
       table.string('password').notNullable();
       table.string('name').notNullable();
       table.dateTime('last_login');
-      table.dateTime('created_at').notNullable();
-      table.dateTime('updated_at').notNullable();
+      table.dateTime('created_at').notNullable().defaultTo(knex.fn.now(6));
+      table.dateTime('updated_at').notNullable().defaultTo(knex.fn.now(6));
       table.dateTime('deleted_at');
     }),
     knex.schema.createTable(tableName.shape, (table) => {

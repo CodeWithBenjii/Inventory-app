@@ -1,0 +1,58 @@
+[
+	{
+	  "name": "australian capital territory",
+	  "abbreviation": "act",
+	  "capital": "canberra",
+	  "type": "territory",
+	  "country" : "australia"
+	},
+	{
+	  "name": "new south wales",
+	  "abbreviation": "nsw",
+	  "capital": "sydney",
+	  "type": "state",
+	  "country" : "australia"
+	},
+	{
+	  "name": "northern territory",
+	  "abbreviation": "nt",
+	  "capital": "darwin",
+	  "type": "territory",
+	  "country" : "australia"
+	},
+	{
+	  "name": "queensland",
+	  "abbreviation": "qld",
+	  "capital": "brisbane",
+	  "type": "state",
+	  "country" : "australia"
+	},
+	{
+	  "name": "south australia",
+	  "abbreviation": "sa",
+	  "capital": "adelaide",
+	  "type": "state",
+	  "country" : "australia"
+	},
+	{
+	  "name": "tasmania",
+	  "abbreviation": "tas",
+	  "capital": "hobart",
+	  "type": "state",
+	  "country" : "australia"
+	},
+	{
+	  "name": "victoria",
+	  "abbreviation": "vic",
+	  "capital": "melbourne",
+	  "type": "state",
+	  "country" : "australia"
+	},
+	{
+	  "name": "western australia",
+	  "abbreviation": "wa",
+	  "capital": "perth",
+	  "type": "state",
+	  "country" : "australia"
+	}
+  ]

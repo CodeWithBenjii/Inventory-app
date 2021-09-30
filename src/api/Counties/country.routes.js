@@ -2,7 +2,7 @@ const express = require('express');
 const Joi = require('joi');
 
 const router = express.Router();
-const Country = require('./country.model');
+const Country = require('./counties.model');
 
 router.get('/', async (req, res) => {
   const countries = await Country.query().select('id', 'name', 'code');

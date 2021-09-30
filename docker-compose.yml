@@ -18,3 +18,19 @@ services:
     restart: always
     ports:
       - 8090:8080
+
+  localstack:
+      image: localstack/localstack
+      ports:
+        - "4566:4566"
+      environment:
+        - SERVICES=s3
+        - DEFAULT_REGION=eu-west-1
+        - AWS_DEFAULT_REGION=eu-west-1
+        - HOSTNAME_EXTERNAL=localhost
+        - USE_SSL=false
+        - DATA_DIR=/tmp/localstack/data
+        - DEBUG=1
+      volumes:
+        - "/tmp/localstack:/tmp/localstack"
+        - ./.aws:/docker-entrypoint-initaws.d

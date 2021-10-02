@@ -1,34 +1,33 @@
 const express = require('express');
-const Joi = require('joi');
-const Address = require('./address.model');
+const AddressController = require('./address.controler');
 
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-  const address = await Address.query().select().withGraphJoined('[state, country]');
-  res.json(address);
+  const result = await AddressController.getAllAddresses();
+  if (result.errCode) {
+    res.status(result.errCode).json(result);
+    return;
+  }
+  res.json(result);
 });
 
 router.post('/', async (req, res) => {
-  const schema = Joi.object({
-    address_line_1: Joi.string().required(),
-    address_line_2: Joi.string(),
-    city: Joi.string().required(),
-    state_id: Joi.number().required(),
-    country_id: Joi.number().required(),
-    zip_code: Joi.string().required(),
-  });
+  const result = await AddressController.createAddress(req.body);
+  if (result.errCode) {
+    res.status(result.errCode).json(result);
+    return;
+  }
+  res.json(result);
+});
 
-  const { error } = schema.validate(req.body);
-  if (error) {
-    return res.status(400).send(error);
+router.get('/:id', async (req, res) => {
+  const result = await AddressController.getAddressById(req.params.id);
+  if (result.errCode) {
+    res.status(result.errCode).json(result);
+    return;
   }
-  try {
-    const address = await Address.query().insert(req.body);
-    res.json(address);
-  } catch (err) {
-    res.status(500).send(err);
-  }
+  res.json(result);
 });
 
 module.exports = router;

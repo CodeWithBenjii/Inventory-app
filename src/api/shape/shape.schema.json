@@ -1,27 +1,12 @@
 {
-	"$schema": "http://json-schema.org/draft-07/schema",
-	"type": "object",
-	"title": "Shape",
-	"description": "A Shape",
-	"required": [
-		"name"
-	],
-	"additionalProperties": false,
-	"properties": {
-		"id": {
-			"$id": "#/properties/id",
-			"type": "integer",
-			"title": "The shape ID of the shape."
-		},
-		"name": {
-			"$id": "#/properties/name",
-			"type": "string",
-			"title": "The shape name.",
-			"examples": [
-				"Square",
-				"Cylinder",
-				"Cube"
-			]
-		}
-	}
+  "required": ["name"],
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "name": {
+      "type": "string",
+      "examples": ["Square", "Cylinder", "Cube"]
+    }
   }
+}

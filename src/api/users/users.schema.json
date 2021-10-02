@@ -1,50 +1,25 @@
 {
-	"$schema": "http://json-schema.org/draft-07/schema",
-	"type": "object",
-	"title": "User",
-	"description": "The User",
-	"required": [
-		"email",
-		"name",
-		"password"
-	],
-	"additionalProperties": false,
-	"properties": {
-		"id": {
-			"$id": "#/properties/id",
-			"type": "integer",
-			"title": "The database ID of the user."
-		},
-		"email": {
-			"$id": "#/properties/email",
-			"type": "string",
-			"title": "The users email. Must be unique.",
-			"examples": [
-				"Benjamin@email.com"
-			]
-		},
-		"name": {
-			"$id": "#/properties/name",
-			"type": "string",
-			"title": "The users name.",
-			"examples": [
-				"Benjamin"
-			]
-		},
-		"password": {
-		  "$id": "#/properties/password",
-		  "type": "string",
-		  "title": "The users hashed password."
-		},
-		"created_at": {
-			"$id": "#/properties/created_at",
-			"type": "string",
-			"title": "The creation date of the user."
-		},
-		"updated_at": {
-			"$id": "#/properties/updated_at",
-			"type": "string",
-			"title": "The date the user was last updated."
-		}
-	}
+  "required": ["email", "name", "password"],
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "email": {
+      "type": "string",
+      "examples": ["Benjamin@email.com"]
+    },
+    "name": {
+      "type": "string",
+      "examples": ["Benjamin"]
+    },
+    "password": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "updated_at": {
+      "type": "string"
+    }
   }
+}

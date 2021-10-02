@@ -2,7 +2,7 @@ const { Model } = require('objection');
 const schema = require('./address.schema.json');
 const db = require('../../db');
 const tableNames = require('../../utils/constants/tableNames');
-const State = require('../state/state.model');
+const State = require('../states/state.model');
 const Country = require('../Counties/counties.model');
 
 Model.knex(db);

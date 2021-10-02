@@ -1,8 +1,8 @@
 const express = require('express');
 
 const users = require('./users/users.routes');
-const countries = require('./Counties/country.routes');
-const states = require('./state/state.routes');
+const countries = require('./Counties/counties.routes');
+const states = require('./states/state.routes');
 const address = require('./address/address.routes');
 const company = require('./company/company.routes');
 const shape = require('./shape/shape.routes');

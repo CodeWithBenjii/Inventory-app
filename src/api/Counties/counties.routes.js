@@ -1,19 +1,10 @@
 const express = require('express');
-const CompanyController = require('./company.controller')
 
 const router = express.Router();
+const CountriesController = require('./counties.controller');
 
 router.get('/', async (req, res) => {
-  const result = await CompanyController.getAllComapnies();
-  if (result.errCode) {
-    res.status(result.errCode).json(result);
-    return;
-  }
-  res.json(result);
-});
-
-router.get('/:id', async (req, res) => {
-  const result = await CompanyController.getACompany(req.params.id);
+  const result = await CountriesController.getAllCounties();
   if (result.errCode) {
     res.status(result.errCode).json(result);
     return;
@@ -22,11 +13,21 @@ router.get('/:id', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-  const result = await CompanyController.createCompany(req.body);
+  const result = await CountriesController.createCountry(req.body);
   if (result.errCode) {
     res.status(result.errCode).json(result);
     return;
   }
   res.json(result);
-})
+});
+
+router.get('/:id', async (req, res) => {
+  const result = await CountriesController.getCountryById(req.params.id);
+  if (result.errCode) {
+    res.status(result.errCode).json(result);
+    return;
+  }
+  res.json(result);
+});
+
 module.exports = router;

@@ -1,0 +1,45 @@
+{
+    "required": [
+        "name",
+        "logo_url",
+        "description",
+        "type",
+        "website_url",
+        "phone_number",
+        "email"
+    ],
+    "properties": {
+        "name": {
+            "type": "string",
+            "example": "redbull"
+        },
+        "logo_url": {
+            "type": "string",
+            "example": "https: //logos-world.net/wp-content/uploads/2020/11/Red-Bull-Logo.png"
+        },
+        "description": {
+            "type": "string",
+            "example": "WillSurelyGiveyouwings"
+        },
+        "type": {
+            "type": "string",
+            "example": "EnergyDrinks"
+        },
+        "website_url": {
+            "type": "string",
+            "example": "https: //www.redbull.com/au-en/"
+        },
+        "phone_number": {
+            "type": "string",
+            "example": "0412341234"
+        },
+        "email": {
+            "type": "string",
+            "example": "email@email.com"
+        },
+        "address_id": {
+            "type": "number",
+            "example": 1
+        }
+    }
+}

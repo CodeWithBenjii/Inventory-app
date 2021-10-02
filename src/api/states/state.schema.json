@@ -1,0 +1,16 @@
+{
+  "required": ["name", "code"],
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "code": {
+      "type": "string",
+      "examples": ["AU", "US", "CA"]
+    },
+    "name": {
+      "type": "string",
+      "examples": ["Australia", "United States", "Canada"]
+    }
+  }
+}

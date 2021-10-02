@@ -36,7 +36,7 @@ const getStateById = async (id) => {
     if (state.length === 0) {
       throw new Error('State not found.');
     }
-    return state;
+    return state[0];
   } catch (error) {
     return {
       msg: 'Error Getting state by id. Please Ensure you have the correct ID',

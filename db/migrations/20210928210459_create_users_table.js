@@ -17,7 +17,7 @@ exports.up = async (knex) => {
     }),
     knex.schema.createTable(tableName.shape, (table) => {
       table.increments('id').primary();
-      table.string('shape');
+      table.string('name');
     }),
     knex.schema.createTable(tableName.inventory_location, (table) => {
       table.increments('id').primary();

@@ -22,13 +22,10 @@ services:
   localstack:
       image: localstack/localstack
       ports:
-        - "4566:4566"
+        - '4563-4599:4563-4599'
+        - '8082:8081'
       environment:
         - SERVICES=s3
-        - DEFAULT_REGION=eu-west-1
-        - AWS_DEFAULT_REGION=eu-west-1
-        - HOSTNAME_EXTERNAL=localhost
-        - USE_SSL=false
         - DATA_DIR=/tmp/localstack/data
         - DEBUG=1
       volumes:

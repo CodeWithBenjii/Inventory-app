@@ -28,6 +28,23 @@ And of course Sprout Home inventory Manager itself is open source with a [public
 on GitHub.
 
 ## Installation
+Start the Postgress Docker Instance. This will also include PgAdminer so you can view your database with a simple web application.
+```bash
+Docker-compose up -d
+```
+Go into the server folder. We will need to install all the NodeJs Packages, This can be done:
+
+Using Yarn:
+```bash
+cd server
+yarn install
+```
+Using NPM:
+
+```bash
+cd server
+npm install
+```
 
 ## License
 
